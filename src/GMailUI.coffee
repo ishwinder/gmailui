@@ -13,8 +13,9 @@ class GMailUI.Helper
 		return
 
 class GMailUI.UIElement
-	constructor: (html) ->
+	constructor: (html, hoverClass) ->
 		@setElement html
+		GMailUI.Helper.hover @getElement(), hoverClass if hoverClass
 
 	element: null
 	getElement: -> @element
@@ -546,3 +547,15 @@ class GMailUI.PopupCheckbox extends GMailUI.OnAble
 			tooltip: 	tooltip
 		super GMailUI.PopupCheckbox.hoverClass, GMailUI.PopupCheckbox.selectedClass
 		@setSelected selected
+
+class GMailUI.PopupLink extends GMailUI.UIElement
+  @template: _.template """
+              <div class="J-N aMS" id="ms" role="menuitem">
+                <div class="J-N-Jz"><%- label %></div>
+              </div>
+              """
+  @hoverClass:  'J-N-JT'
+  
+  constructor: (label) ->
+    html = GMailUI.PopupLink.template label: label
+    super html, GMailUI.PopupLink.hoverClass

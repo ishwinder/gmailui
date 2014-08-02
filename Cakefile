@@ -15,7 +15,7 @@ task 'build:apps', 'Build apps script JS file', ->
 # * docs  - generates annotated documentation using docco
 # * clean - clean generated .js files
 files = [
-  'lib'
+  '../lib'
   'src'
 ]
 
